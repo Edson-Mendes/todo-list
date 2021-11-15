@@ -38,7 +38,7 @@ public class TaskDto {
     this.description = description;
   }
 
-  public boolean isIsConcluded() {
+  public boolean getIsConcluded() {
     return isConcluded;
   }
 
