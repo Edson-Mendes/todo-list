@@ -3,8 +3,8 @@ package com.emendes.todolist.dto;
 import com.emendes.todolist.entities.Task;
 
 public class TaskDto {
+  
   private int id;
-
   private String description;
   private boolean isConcluded;
 

@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/tasks")
+@RequestMapping()
 public class TaskController {
   
   @Autowired
   private TaskService taskService;
 
-  @GetMapping
+  @GetMapping(value = "/tasks")
   public ResponseEntity<List<TaskDto>> findAll(){
     List<TaskDto> listTask = taskService.findAll();
     return ResponseEntity.ok(listTask);
@@ -37,6 +37,14 @@ public class TaskController {
     return new ResponseEntity<TaskDto>(taskDto, HttpStatus.CREATED);
   }
 
+  /* @PutMapping(path = "/{id}")
+  @ResponseBody
+  public ResponseEntity<TaskDto> updateTask(@PathVariable Integer id, @RequestBody TaskDto taskDto){
+    Task taskEntity = fromDto(taskDto);
+
+  } */
+
+  // Método para converter uma taskdto em task
   private Task fromDto(TaskDto taskDto){
     Task task = new Task(0, taskDto.getDescription(), taskDto.getIsConcluded());
     return task;
