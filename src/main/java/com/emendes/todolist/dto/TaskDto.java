@@ -45,4 +45,8 @@ public class TaskDto {
   public void setIsConcluded(boolean isConcluded) {
     this.isConcluded = isConcluded;
   }
+
+  public String toString(){
+    return "{id: "+this.id+", description: "+this.description+", isConcluded: "+this.isConcluded+"}";
+  }
 }

@@ -1,6 +1,8 @@
 package com.emendes.todolist.controller;
 
 
+import java.util.List;
+
 import com.emendes.todolist.dto.TaskDto;
 import com.emendes.todolist.entities.Task;
 import com.emendes.todolist.services.TaskService;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -36,8 +39,8 @@ public class TaskController {
   @RequestMapping("/tasks")
   public ModelAndView tasksList(){
     ModelAndView modelAndView = new ModelAndView("index");
-    Iterable<TaskDto> tasks = taskService.findAll();
-
+    List<TaskDto> tasks = taskService.findAll();
+    System.out.println(tasks);
     modelAndView.addObject("tasks", tasks);
     return modelAndView;
   }

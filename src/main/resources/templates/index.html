@@ -13,5 +13,12 @@
   <body>
     <h1>To Do List</h1>
     <h3><a href="/createTask">Criar Tarefa</a></h3>
+
+    <div th:each="task : ${tasks}">
+      <div class="row">
+        <p><span th:text="${task.description}"></span></p>
+        
+      </div>
+    </div>
   </body>
 </html>
