@@ -45,6 +45,12 @@ public class TaskController {
     return modelAndView;
   }
 
+  @RequestMapping("/deleteTask")
+  public String deleteTask(int id){
+    taskService.deleteTask(id);
+    return "redirect:/tasks";
+  }
+
   // Método para converter uma taskdto em task
   private Task fromDto(TaskDto taskDto) {
     Task task = new Task(0, taskDto.getDescription(), taskDto.getIsConcluded());

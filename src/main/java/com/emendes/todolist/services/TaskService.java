@@ -27,4 +27,9 @@ public class TaskService {
     return taskRepository.save(task);
   }
 
+  // Método para deletar uma task
+  public void deleteTask(int id){
+    taskRepository.deleteById(id);
+  }
+
 }

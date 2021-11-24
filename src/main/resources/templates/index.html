@@ -16,8 +16,11 @@
 
     <div th:each="task : ${tasks}">
       <div class="row">
-        <p><span th:text="${task.description}"></span></p>
-        
+        <span class="${task.isConcluded}" th:text="${task.description}"></span><button>Concluir</button
+        ><button>Editar</button><a
+        th:href="@{/deleteTask(id = ${task.id}) }"
+        ><i class="material-icons left">delete</i></a
+      >
       </div>
     </div>
   </body>
