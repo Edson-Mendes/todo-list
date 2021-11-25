@@ -12,6 +12,10 @@
   </head>
   <body>
     <h1>Criar Tarefa</h1>
+
+    <!-- Mensagem para caso tenha algum dado inválido -->
+    <th:block th:include="validationMessage"></th:block>
+
     <form method="post">
       Description: <input type="text" name="description" />
       <button type="submit">Salvar</button

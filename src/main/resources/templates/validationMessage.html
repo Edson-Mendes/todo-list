@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html
+  lang="pt-BR"
+  xmlns="http://thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head> </head>
+  <body>
+    <div th:if="${not #strings.isEmpty(message)}">
+      <span th:text="${message}"></span>
+    </div>
+  </body>
+</html>

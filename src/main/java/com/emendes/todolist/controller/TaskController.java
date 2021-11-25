@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 // @RequestMapping()
@@ -25,12 +26,25 @@ public class TaskController {
   // Método para retornar a página de criação de tarefas
   @RequestMapping(value = "/createTask", method = RequestMethod.GET)
   public String form() {
+
+    /* ModelAndView modelAndView = new ModelAndView("task/createTask");
+    modelAndView.addObject("hasError", true);
+
+    return modelAndView; */
     return "task/createTask";
   }
 
   // Método para salvar uma tarefa.
   @RequestMapping(value = "/createTask", method = RequestMethod.POST)
-  public String form(TaskDto taskDto) {
+  public String form(TaskDto taskDto, RedirectAttributes attributes) {
+
+    if(taskDto.getDescription() == null || taskDto.getDescription().isEmpty()){
+      // System.err.println("Campo description está vazio!!!");
+      
+      attributes.addFlashAttribute("message", "Campo vazio!");
+      return "redirect:/createTask";
+    }
+
     taskDto.setIsConcluded(false);
     Task task = fromDto(taskDto);
     taskService.saveTask(task);
@@ -53,15 +67,24 @@ public class TaskController {
     ModelAndView modelAndView = new ModelAndView("task/updateTask");
     TaskDto task = new TaskDto(taskService.findById(id));
     modelAndView.addObject("task", task);
+    
+    
+
     return modelAndView;
   }
 
   // Método para atualizar uma tarefa.
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.POST)
-  public String updateTask(@PathVariable int id, TaskDto taskDto){
+  public String updateTask(@PathVariable int id, TaskDto taskDto, RedirectAttributes attributes){
     // TODO: Validar dados passados.
     // taskDto.setIsConcluded(false);
-    System.err.println("Status da task: "+taskDto.getIsConcluded());
+    
+    if(taskDto.getDescription() == null || taskDto.getDescription().isEmpty()){
+      
+      attributes.addFlashAttribute("message", "Campo vazio!");
+      return "redirect:/updateTask/"+id;
+    }
+
     Task task = fromDto(taskDto);
     taskService.updateTask(id, task);
     return "redirect:/tasks";

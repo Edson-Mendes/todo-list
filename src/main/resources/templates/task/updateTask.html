@@ -12,8 +12,10 @@
   </head>
   <body>
     <h1>Atualizar tarefa</h1>
+
+    <th:block th:include="validationMessage"></th:block>
+
     <form method="post">
-      <!-- <input type="hidden" name="_METHOD" value="PUT"> -->
       Description:
       <input type="text" name="description" th:value="${task.description}" />
       Status:
