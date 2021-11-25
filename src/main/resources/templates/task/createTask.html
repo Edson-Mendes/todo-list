@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+  lang="pt-BR"
+  xmlns="http://thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar Tarefa</title>
+  </head>
+  <body>
+    <h1>Criar Tarefa</h1>
+    <form method="post">
+      Description: <input type="text" name="description" />
+      <button type="submit">Salvar</button
+      ><a th:href="@{/tasks}"><i class="material-icons left">Cancelar</i></a>
+    </form>
+  </body>
+</html>

@@ -32,4 +32,20 @@ public class TaskService {
     taskRepository.deleteById(id);
   }
 
+  public Task updateTask(int id, Task newTask){
+    return taskRepository.findById(id).map(task -> {
+      task.setDescription(newTask.getDescription());
+      task.setIsConcluded(newTask.getIsConcluded());
+      Task updatedTask = taskRepository.save(task);
+      return updatedTask;
+    }).orElse(null);
+  }
+
+  public Task findById(int id){
+    return taskRepository.findById(id).map(taskOp -> {
+      Task task = new Task(taskOp.getId(), taskOp.getDescription(), taskOp.getIsConcluded());
+      return task;
+    }).orElse(null);
+  }
+
 }

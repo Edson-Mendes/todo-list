@@ -8,13 +8,18 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Criar Tarefa</title>
+    <title>Atualizar tarefa</title>
   </head>
   <body>
-    <h1>Criar Tarefa</h1>
+    <h1>Atualizar tarefa</h1>
     <form method="post">
-      Description: <input type="text" name="description">
-      <button type="submit">Salvar</button>
+      <!-- <input type="hidden" name="_METHOD" value="PUT"> -->
+      Description:
+      <input type="text" name="description" th:value="${task.description}" />
+      <button type="submit">Atualizar</button>
+      <a th:href="@{/tasks}"
+          ><i class="material-icons left">Cancelar</i></a
+        >
     </form>
   </body>
 </html>
