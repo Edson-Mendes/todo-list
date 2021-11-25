@@ -76,8 +76,6 @@ public class TaskController {
   // Método para atualizar uma tarefa.
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.POST)
   public String updateTask(@PathVariable int id, TaskDto taskDto, RedirectAttributes attributes){
-    // TODO: Validar dados passados.
-    // taskDto.setIsConcluded(false);
     
     if(taskDto.getDescription() == null || taskDto.getDescription().isEmpty()){
       
