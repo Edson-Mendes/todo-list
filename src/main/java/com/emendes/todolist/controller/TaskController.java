@@ -60,9 +60,19 @@ public class TaskController {
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.POST)
   public String updateTask(@PathVariable int id, TaskDto taskDto){
     // TODO: Validar dados passados.
-    taskDto.setIsConcluded(false);
-    Task newTask = fromDto(taskDto);
-    taskService.updateTask(id, newTask);
+    // taskDto.setIsConcluded(false);
+    System.err.println("Status da task: "+taskDto.getIsConcluded());
+    Task task = fromDto(taskDto);
+    taskService.updateTask(id, task);
+    return "redirect:/tasks";
+  }
+
+  // Método para atualizar o status da task.
+  @RequestMapping("/updateStatus")
+  public String updateStatus(int id, boolean status){
+    // TODO: Verificar se retornou null, se sim, adicionar msg de erro.
+    taskService.updateStatus(id, !status);
+
     return "redirect:/tasks";
   }
 

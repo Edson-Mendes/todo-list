@@ -16,13 +16,13 @@
 
     <div th:each="task : ${tasks}">
       <div class="row">
-        <span class="${task.isConcluded}" th:text="${task.description}"></span
-        ><button>Concluir</button
-        ><a th:href="@{/updateTask/{id}(id = ${task.id}) }"
-          ><i class="material-icons left">update</i></a
-        ><a th:href="@{/deleteTask(id = ${task.id}) }"
-          ><i class="material-icons left">delete</i></a
-        >
+        <span class="${task.isConcluded}" th:text="${task.description}"></span>
+        
+        <a th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"><i class="material-icons left">concluir</i></a>
+
+        <a th:href="@{/updateTask/{id}(id = ${task.id})}"><i class="material-icons left">update</i></a>
+  
+        <a th:href="@{/deleteTask(id = ${task.id}) }"><i class="material-icons left">delete</i></a>
       </div>
     </div>
   </body>

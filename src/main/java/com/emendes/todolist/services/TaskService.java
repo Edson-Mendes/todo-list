@@ -32,6 +32,7 @@ public class TaskService {
     taskRepository.deleteById(id);
   }
 
+  // Método para atualizar uma task.
   public Task updateTask(int id, Task newTask){
     return taskRepository.findById(id).map(task -> {
       task.setDescription(newTask.getDescription());
@@ -41,6 +42,16 @@ public class TaskService {
     }).orElse(null);
   }
 
+  // Método para atualizar o status de concluded de uma task.
+  public Task updateStatus(int id, boolean status){
+    return taskRepository.findById(id).map(task -> {
+      task.setIsConcluded(status);
+      Task updatedTask = taskRepository.save(task);
+      return updatedTask;
+    }).orElse(null);
+  }
+
+  // Método para encontrar uma task por id.
   public Task findById(int id){
     return taskRepository.findById(id).map(taskOp -> {
       Task task = new Task(taskOp.getId(), taskOp.getDescription(), taskOp.getIsConcluded());
