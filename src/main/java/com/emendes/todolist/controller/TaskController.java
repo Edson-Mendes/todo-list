@@ -1,6 +1,5 @@
 package com.emendes.todolist.controller;
 
-
 import java.util.List;
 
 import com.emendes.todolist.dto.TaskDto;
@@ -23,14 +22,18 @@ public class TaskController {
   @Autowired
   private TaskService taskService;
 
+  // Método para encaminhar para tela da lista de tarefas.
+  @RequestMapping("/tasks")
+  public ModelAndView tasksList() {
+    ModelAndView modelAndView = new ModelAndView("index");
+    List<TaskDto> tasks = taskService.findAll();
+    modelAndView.addObject("tasks", tasks);
+    return modelAndView;
+  }
+
   // Método para retornar a página de criação de tarefas
   @RequestMapping(value = "/createTask", method = RequestMethod.GET)
   public String form() {
-
-    /* ModelAndView modelAndView = new ModelAndView("task/createTask");
-    modelAndView.addObject("hasError", true);
-
-    return modelAndView; */
     return "task/createTask";
   }
 
@@ -38,9 +41,9 @@ public class TaskController {
   @RequestMapping(value = "/createTask", method = RequestMethod.POST)
   public String form(TaskDto taskDto, RedirectAttributes attributes) {
 
-    if(taskDto.getDescription() == null || taskDto.getDescription().isEmpty()){
+    if (taskDto.getDescription() == null || taskDto.getDescription().isEmpty()) {
       // System.err.println("Campo description está vazio!!!");
-      
+
       attributes.addFlashAttribute("message", "Campo vazio!");
       return "redirect:/createTask";
     }
@@ -48,49 +51,44 @@ public class TaskController {
     taskDto.setIsConcluded(false);
     Task task = fromDto(taskDto);
     taskService.saveTask(task);
-    return "redirect:/createTask";
-  }
 
-  // Método para encaminhar para tela da lista de tarefas.
-  @RequestMapping("/tasks")
-  public ModelAndView tasksList(){
-    ModelAndView modelAndView = new ModelAndView("index");
-    List<TaskDto> tasks = taskService.findAll();
-    modelAndView.addObject("tasks", tasks);
-    return modelAndView;
+    attributes.addFlashAttribute("successMessage", "Tarefa criada com sucesso!");
+
+    return "redirect:/createTask";
   }
 
   // Método para encaminhar para página de atualização de tarefa
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.GET)
-  public ModelAndView updateForm(@PathVariable int id){
+  public ModelAndView updateForm(@PathVariable int id) {
     // TODO: Validar id, se corresponde a alguma task salvo no banco de dados.
     ModelAndView modelAndView = new ModelAndView("task/updateTask");
     TaskDto task = new TaskDto(taskService.findById(id));
     modelAndView.addObject("task", task);
-    
-    
 
     return modelAndView;
   }
 
   // Método para atualizar uma tarefa.
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.POST)
-  public String updateTask(@PathVariable int id, TaskDto taskDto, RedirectAttributes attributes){
-    
-    if(taskDto.getDescription() == null || taskDto.getDescription().isEmpty()){
-      
+  public String updateTask(@PathVariable int id, TaskDto taskDto, RedirectAttributes attributes) {
+
+    if (taskDto.getDescription() == null || taskDto.getDescription().isEmpty()) {
+
       attributes.addFlashAttribute("message", "Campo vazio!");
-      return "redirect:/updateTask/"+id;
+      return "redirect:/updateTask/" + id;
     }
 
     Task task = fromDto(taskDto);
     taskService.updateTask(id, task);
+
+    attributes.addFlashAttribute("successMessage", "Tarefa atualizada com sucesso!");
+
     return "redirect:/tasks";
   }
 
   // Método para atualizar o status da task.
   @RequestMapping("/updateStatus")
-  public String updateStatus(int id, boolean status){
+  public String updateStatus(int id, boolean status) {
     // TODO: Verificar se retornou null, se sim, adicionar msg de erro.
     taskService.updateStatus(id, !status);
 
@@ -99,7 +97,7 @@ public class TaskController {
 
   // Método para deletar uma tarefa.
   @RequestMapping("/deleteTask")
-  public String deleteTask(int id){
+  public String deleteTask(int id) {
     taskService.deleteTask(id);
     return "redirect:/tasks";
   }

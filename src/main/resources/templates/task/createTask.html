@@ -14,12 +14,13 @@
     <h1>Criar Tarefa</h1>
 
     <!-- Mensagem para caso tenha algum dado inválido -->
-    <th:block th:include="errorMessage"></th:block>
+    <th:block th:include="messages/errorMessage"></th:block>
+    <th:block th:include="messages/successMessage"></th:block>
 
     <form method="post">
       Description: <input type="text" name="description" />
       <button type="submit">Salvar</button
-      ><a th:href="@{/tasks}"><i class="material-icons left">Cancelar</i></a>
+      ><a th:href="@{/tasks}"><i class="material-icons left">Voltar</i></a>
     </form>
   </body>
 </html>
