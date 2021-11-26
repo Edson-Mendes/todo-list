@@ -8,25 +8,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Lista de tarefas</title>
   </head>
   <body>
-    
-    <h1>Lista de tarefas</h1>
-    <h3><a href="/createTask">Criar Tarefa</a></h3>
-
-    <th:block th:include="messages/successMessage"></th:block>
-
-    <div th:each="task : ${tasks}">
-      <div class="row">
-        <span class="${task.isConcluded}" th:text="${task.description}"></span>
-        
-        <a th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"><i class="material-icons left">concluir</i></a>
-
-        <a th:href="@{/updateTask/{id}(id = ${task.id})}"><i class="material-icons left">update</i></a>
-  
-        <a th:href="@{/deleteTask(id = ${task.id}) }"><i class="material-icons left">delete</i></a>
+    <header>
+      <h2>Lista de tarefas</h2>
+      <div>
+        <a href="/createTask">CRIAR TAREFA</a>
       </div>
-    </div>
+    </header>
+
+    <main>
+      <th:block th:include="messages/successMessage"></th:block>
+
+      
+      <div th:each="task : ${tasks}">
+        <div class="row">
+          <span
+            class="${task.isConcluded}"
+            th:text="${task.description}"
+          ></span>
+
+          <a
+            th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"
+            ><i class="material-icons left">concluir</i></a
+          >
+
+          <a th:href="@{/updateTask/{id}(id = ${task.id})}"
+            ><i class="material-icons left">update</i></a
+          >
+
+          <a th:href="@{/deleteTask(id = ${task.id}) }"
+            ><i class="material-icons left">delete</i></a
+          >
+        </div>
+      </div>
+    </main>
   </body>
 </html>
