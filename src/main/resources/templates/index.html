@@ -22,28 +22,46 @@
     <main>
       <th:block th:include="messages/successMessage"></th:block>
 
-      
-      <div th:each="task : ${tasks}">
-        <div class="row">
-          <span
-            class="${task.isConcluded}"
-            th:text="${task.description}"
-          ></span>
+      <!-- Adicionar um th:if para verificar se a lista está vazia -->
+      <!-- Se estiver vazia, mostrar uma mensagem na tela -->
+      <table>
+        <thead>
+          <tr>
+            <th class="description-content">Descrição</th>
+            <th class="button-status">Concluído</th>
+            <th class="button-update">Atualizar</th>
+            <th class="button-del">Deletar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-content" th:each="task : ${tasks}">
+            <td class="description-content">
+              <span
+                th:class="'concluded-'+${task.isConcluded}"
+                th:text="${task.description}"
+              ></span>
+            </td>
 
-          <a
-            th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"
-            ><i class="material-icons left">concluir</i></a
-          >
+            <td class="button-status">
+              <a
+                th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"
+                ><i class="material-icons left">concluir</i></a
+              >
+            </td>
 
-          <a th:href="@{/updateTask/{id}(id = ${task.id})}"
-            ><i class="material-icons left">update</i></a
-          >
+            <td class="button-update">
+              <a th:href="@{/updateTask/{id}(id = ${task.id})}"
+                ><i class="material-icons left">update</i></a
+              >
+            </td>
 
-          <a th:href="@{/deleteTask(id = ${task.id}) }"
-            ><i class="material-icons left">delete</i></a
-          >
-        </div>
-      </div>
+            <td class="button-del">
+              <a th:href="@{/deleteTask(id = ${task.id}) }" name="delete task"><i class="material-icons left">delete</i></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </main>
   </body>
 </html>
