@@ -1,6 +1,5 @@
 -- script para adicionar alguns itens a tabelas tb_task.
 
-insert into tb_task (description, is_concluded) values ('Alimentar as gatas', 1);
-insert into tb_task (description, is_concluded) values ('Fazer a janta', 0);
-insert into tb_task (description, is_concluded) values ('Limpar caixa de areia', 1);
-insert into tb_task (description, is_concluded) values ('Fazer exercícios', 1);
+insert into tb_task (description, is_concluded) values ('lorem ipsum dolor sit amet', 1);
+insert into tb_task (description, is_concluded) values ('lorem ipsum', 0);
+insert into tb_task (description, is_concluded) values ('lorem ipsum dolor', 1);

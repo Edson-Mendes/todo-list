@@ -4,9 +4,11 @@
   xmlns="http://thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
-  <head> </head>
+  <head>
+    <link rel="stylesheet" href="message-style.css">
+  </head>
   <body>
-    <div th:if="${not #strings.isEmpty(message)}">
+    <div class="error-message" th:if="${not #strings.isEmpty(message)}">
       <span th:text="${message}"></span>
     </div>
   </body>

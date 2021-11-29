@@ -4,10 +4,11 @@
   xmlns="http://thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 >
-  <head> </head>
+  <head>
+    <link rel="stylesheet" href="message-style.css">
+  </head>
   <body>
-    <!-- TODO: Adicionar essa classe ao div abaixo  class="success-message" -->
-    <div th:if="${not #strings.isEmpty(successMessage)}">
+    <div class="success-message" th:if="${not #strings.isEmpty(successMessage)}">
       <span th:text="${successMessage}"></span>
     </div>
   </body>

@@ -8,22 +8,125 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <!-- TODO: Entender por que não carrega o css por esse meio abaixo. -->
+    <!-- E resolver -->
+    <!-- <link rel="stylesheet" type="text/plain" href="updateTask-style.css" /> -->
+    
+    <!-- TODO: remover esse style quando resolver o problema acima-->
+    <style type="text/css">
+      * {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: ghostwhite;
+      }
+
+      body {
+        width: 454px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgb(56, 54, 54);
+      }
+
+      main {
+        padding-left: 20px;
+        padding-right: 10px;
+      }
+
+      header {
+        padding-left: 20px;
+        padding-right: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        background-color: rgb(4, 79, 163);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      i {
+        padding-top: 10px;
+      }
+
+      button {
+        margin-top: 10px;
+        height: 29px;
+        width: 110px;
+        color: rgb(56, 54, 54);
+      }
+
+      input {
+        height: 25px;
+        width: 280px;
+        color: rgb(56, 54, 54);
+        font-size: 16px;
+      }
+
+      form {
+        padding-top: 15px;
+      }
+
+      #input-checkbox {
+        width: 95px;
+      }
+
+      #div-checkbox {
+        margin-top: 8px;
+      }
+
+      .error-message {
+        height: 30px;
+        background-color: red;
+        color: ghostwhite;
+        text-align: center;
+        padding-top: 10px;
+      }
+    </style>
+
     <title>Atualizar tarefa</title>
   </head>
   <body>
-    <h1>Atualizar tarefa</h1>
+    <header>
+      <h2>Atualizar tarefa</h2>
 
-    <th:block th:include="messages/errorMessage"></th:block>
-
-    <form method="post">
-      Description:
-      <input type="text" name="description" th:value="${task.description}" />
-      Status:
-      <input type="checkbox" name="isConcluded" th:checked="${task.isConcluded}">
-      <button type="submit">Atualizar</button>
-      <a th:href="@{/tasks}"
-          ><i class="material-icons left">Cancelar</i></a
+      <div>
+        <a th:href="@{/tasks}"
+          ><i class="material-icons" style="font-size: 32px">arrow_back</i></a
         >
-    </form>
+      </div>
+    </header>
+
+    <main>
+      <th:block th:include="messages/errorMessage"></th:block>
+
+      <form method="post">
+        Description:
+        <input
+          id="input-description"
+          type="text"
+          name="description"
+          th:value="${task.description}"
+        />
+        <div id="div-checkbox">
+          Status:
+          <input
+            id="input-checkbox"
+            type="checkbox"
+            name="isConcluded"
+            th:checked="${task.isConcluded}"
+          />
+        </div>
+        <button type="submit">Atualizar</button>
+      </form>
+    </main>
   </body>
 </html>

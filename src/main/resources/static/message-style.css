@@ -1,0 +1,16 @@
+.success-message{
+  height: 30px;
+  background-color: green;
+  color: ghostwhite;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.error-message{
+  height: 30px;
+  background-color: red;
+  color: ghostwhite;
+  text-align: center;
+  padding-top: 10px;
+}
+
