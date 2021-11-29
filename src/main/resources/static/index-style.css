@@ -11,23 +11,26 @@ body{
   background-color: rgb(56, 54, 54);
 }
 
-header, main {
-  padding-left: 20px;
-  padding-right: 30px;
+main{
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
-a {
-  text-decoration: none;
-  font-size: 26px;
-}
 
 header{
+  padding-left: 20px;
+  padding-right: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 50px;
   background-color: rgb(4, 79, 163);
+}
+
+a {
+  text-decoration: none;
+  font-size: 26px;
 }
 
 thead {

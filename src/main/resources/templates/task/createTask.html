@@ -8,19 +8,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="stylesheet" href="createTask-style.css" />
+
     <title>Criar Tarefa</title>
   </head>
+
   <body>
-    <h1>Criar Tarefa</h1>
+    <header>
+      <h2>Criar Tarefa</h2>
 
-    <!-- Mensagem para caso tenha algum dado inválido -->
-    <th:block th:include="messages/errorMessage"></th:block>
-    <th:block th:include="messages/successMessage"></th:block>
+      <div>
+        <a th:href="@{/tasks}"><i class="material-icons" style="font-size:32px;">arrow_back</i></a>
+      </div>
+    </header>
 
-    <form method="post">
-      Description: <input type="text" name="description" />
-      <button type="submit">Salvar</button
-      ><a th:href="@{/tasks}"><i class="material-icons left">Voltar</i></a>
-    </form>
+    <main>
+      <th:block th:include="messages/errorMessage"></th:block>
+      <th:block th:include="messages/successMessage"></th:block>
+
+      <form method="post">
+        Descrição: <input type="text" name="description"/>
+        <button type="submit">Salvar</button>
+      </form>
+    </main>
   </body>
 </html>
