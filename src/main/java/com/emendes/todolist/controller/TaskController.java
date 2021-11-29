@@ -22,6 +22,11 @@ public class TaskController {
   @Autowired
   private TaskService taskService;
 
+  @RequestMapping("/")
+  public String redirectToTasks() {
+    return "redirect:/tasks";
+  }
+
   // Método para encaminhar para tela da lista de tarefas.
   @RequestMapping("/tasks")
   public ModelAndView tasksList() {
