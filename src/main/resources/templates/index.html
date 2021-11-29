@@ -9,13 +9,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Lista de tarefas</title>
   </head>
   <body>
     <header>
       <h2>Lista de tarefas</h2>
       <div>
-        <a href="/createTask">CRIAR TAREFA</a>
+        <a class="link-create" href="/createTask"><i class="fa fa-plus-square-o"></i></a>
       </div>
     </header>
 
@@ -43,21 +47,22 @@
             </td>
 
             <td class="button-status">
-              <a
-                th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}"
-                ><i class="material-icons left">concluir</i></a
-              >
+              <a class="link-status" th:href="@{/updateStatus(id = ${task.id}, status = ${task.isConcluded})}">
+                <i th:if="${task.isConcluded}" class="fa fa-check-square-o"></i>
+                <i th:unless="${task.isConcluded}" class="fa fa-square-o"></i>
+              </a>
             </td>
 
             <td class="button-update">
-              <a th:href="@{/updateTask/{id}(id = ${task.id})}"
-                ><i class="material-icons left">update</i></a
-              >
+              <a th:href="@{/updateTask/{id}(id = ${task.id})}">
+                <i class="fa fa-edit"></i>
+              </a>
             </td>
 
             <td class="button-del">
-              <a th:href="@{/deleteTask(id = ${task.id}) }" name="delete task"><i class="material-icons left">delete</i></a
-              >
+              <a th:href="@{/deleteTask(id = ${task.id}) }" name="delete task">
+                <i class="fa fa-trash-o"></i>
+              </a>
             </td>
           </tr>
         </tbody>

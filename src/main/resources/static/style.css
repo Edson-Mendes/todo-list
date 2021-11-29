@@ -12,12 +12,13 @@ body{
 }
 
 header, main {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 30px;
 }
 
 a {
   text-decoration: none;
+  font-size: 26px;
 }
 
 header{
@@ -37,15 +38,14 @@ table {
   width: 434px;
 }
 
-/* .row-content {
-  height: 30px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-} */
-
 td {
   padding-top: 8px;
   padding-bottom: 8px;
+  text-align: center;
+}
+
+.link-create {
+  font-size: 30px;
 }
 
 .button-del {
@@ -56,8 +56,16 @@ td {
   width: 81px;
 }
 
+.link-status{
+  padding-left: 25px;
+}
+
 .button-status{
+  text-align: left;
   width: 93px;
 }
 
+.description-content{
+  text-align: left;
+}
 
