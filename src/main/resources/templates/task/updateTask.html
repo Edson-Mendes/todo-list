@@ -108,7 +108,7 @@
     <main>
       <th:block th:include="messages/errorMessage"></th:block>
 
-      <form method="post">
+      <form th:if="${!hasError}" method="post">
         Description:
         <input
           id="input-description"

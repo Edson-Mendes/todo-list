@@ -11,12 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-// import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-// @RequestMapping()
 public class TaskController {
 
   @Autowired
@@ -47,7 +45,6 @@ public class TaskController {
   public String form(TaskDto taskDto, RedirectAttributes attributes) {
 
     if (taskDto.getDescription() == null || taskDto.getDescription().isEmpty()) {
-      // System.err.println("Campo description está vazio!!!");
 
       attributes.addFlashAttribute("message", "Campo vazio!");
       return "redirect:/createTask";
@@ -65,10 +62,21 @@ public class TaskController {
   // Método para encaminhar para página de atualização de tarefa
   @RequestMapping(value = "updateTask/{id}", method = RequestMethod.GET)
   public ModelAndView updateForm(@PathVariable int id) {
-    // TODO: Validar id, se corresponde a alguma task salvo no banco de dados.
+    
+    Task task = taskService.findById(id);
     ModelAndView modelAndView = new ModelAndView("task/updateTask");
-    TaskDto task = new TaskDto(taskService.findById(id));
-    modelAndView.addObject("task", task);
+
+    if(task == null){
+      System.err.println("Task não encontrada!");
+      modelAndView.addObject("hasError", true);
+      modelAndView.addObject("message", "Tarefa não encontrada!");
+      return modelAndView;
+    }
+
+    TaskDto taskDto = new TaskDto(task);
+
+    modelAndView.addObject("hasError", false);
+    modelAndView.addObject("task", taskDto);
 
     return modelAndView;
   }
@@ -94,7 +102,6 @@ public class TaskController {
   // Método para atualizar o status da task.
   @RequestMapping("/updateStatus")
   public String updateStatus(int id, boolean status) {
-    // TODO: Verificar se retornou null, se sim, adicionar msg de erro.
     taskService.updateStatus(id, !status);
 
     return "redirect:/tasks";
